@@ -1,7 +1,9 @@
 
 # Encryptor
 
-#Helper
+Encryptor is software made for encrypt and decrypt string character. It's an Ecole 89's projet's
+
+# Helper
 
 -d “destination”
 Allows you to choose the destination file if you want
