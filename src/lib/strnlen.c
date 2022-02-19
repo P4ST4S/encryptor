@@ -1,3 +1,11 @@
+/**
+ * @ Author: Antoine ROSPARS
+ * @ Create Time: 2022-02-19 08:28:54
+ * @ Modified by: Your name
+ * @ Modified time: 2022-02-19 16:51:42
+ * @ Description: Encryptor
+ */
+
 #include "strnlen.h"
 
 size_t std_strnlen(const char *s,

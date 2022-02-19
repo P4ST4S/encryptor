@@ -1,55 +1,63 @@
+/**
+ * @ Author: Antoine ROSPARS
+ * @ Create Time: 2022-02-19 08:28:54
+ * @ Modified by: Antoine ROSPARS
+ * @ Modified time: 2022-02-19 16:55:45
+ * @ Description:
+ */
+
 #include "switch.h"
-
-static void switch_true(char *cnt, size_t len, size_t len_cnt, const char *key)
-{
-    size_t count, count_bit, index;
-
-    index = 0;
-    count = 0;
-    while (count < len && cnt[count] != '\0')
-    {
-        count_bit = 0;
-        while (count_bit != 8)
-        {
-            BITREV(cnt[index], count_bit);
-            count_bit++;
-        }
-        index = (key[count % std_strlen(key)] % len_cnt) + count;
-        if (index >= len_cnt)
-            index = index - len_cnt;
-        count++;
-    }
-}
-
-static void switch_false(char *cnt, size_t len, size_t len_cnt, const char *key)
-{
-    size_t count_bit, index;
-    int start;
-
-    index = 0;
-    start = (len_cnt % std_strlen(key)) - 1;
-    while (len != 0)
-    {
-        count_bit = 8;
-        while (count_bit != 0)
-        {
-            BITREV(cnt[index], count_bit);
-            count_bit--;
-        }
-        if (start == -1)
-            start = std_strlen(key) - 1;
-        index = (len - 1) + (key[start] % len_cnt);
-        if (index >= len_cnt)
-            index = index - len_cnt;
-        len--;
-        start--;
-    }
-}
 
 void std_switch(char *cnt, size_t len, const char *key, bool cipher)
 {
-    if (cipher == true)
-        switch_true(cnt, len, std_strnlen(cnt, len), key);
+    int start;
+    size_t i = 1, count = 0, idx = 0, len_cnt;
+    bool bitPrecedent;
+
+    if (len == 0)
+        return;
+    len_cnt = std_strnlen(cnt, len);
+    bitPrecedent = bit_get(&cnt[idx], 0);
+    if (cipher)
+    {
+        while (count < len && cnt[count] != '\0')
+        {
+            idx = (key[count % std_strlen(key)] % len_cnt) + count;
+            if (idx >= len_cnt)
+                idx = idx - len_cnt;
+            while (++i < len * 8)
+            {
+                if (bitPrecedent != bit_get(&cnt[idx], i))
+                {
+                    bitPrecedent = bit_get(&cnt[idx], i);
+                    bit_set(&cnt[idx], i);
+                }
+                else
+                    bit_reset(&cnt[idx], i);
+            }
+            count++;
+        }
+    }
     else
-        switch_false(cnt, len, std_strnlen(cnt, len), key);
+    {
+        start = (len_cnt % std_strlen(key)) - 1;
+        while (count < len && cnt[count] != '\0')
+        {
+            if (start == -1)
+                start = std_strlen(key) - 1;
+            idx = (len - 1) + (key[start] % len_cnt);
+            if (idx >= len_cnt)
+                idx = idx - len_cnt;
+            while (++i < len * 8)
+            {
+                if (bit_get(&cnt[idx], i) == 1)
+                    bitPrecedent = !bitPrecedent;
+                if (bitPrecedent)
+                    bit_set(&cnt[idx], i);
+                else
+                    bit_reset(&cnt[idx], i);
+            }
+            count++;
+        }
+    }
 }

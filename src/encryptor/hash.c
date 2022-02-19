@@ -1,3 +1,11 @@
+/**
+ * @ Author: Antoine ROSPARS
+ * @ Create Time: 2022-02-19 08:28:54
+ * @ Modified by: Antoine ROSPARS
+ * @ Modified time: 2022-02-19 16:55:36
+ * @ Description:
+ */
+
 #include "hash.h"
 
 unsigned int std_hash(char *data, size_t len)

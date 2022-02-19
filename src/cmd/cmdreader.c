@@ -1,3 +1,11 @@
+/**
+ * @ Author: Antoine ROSPARS
+ * @ Create Time: 2022-02-19 08:28:54
+ * @ Modified by: Antoine ROSPARS
+ * @ Modified time: 2022-02-19 16:56:07
+ * @ Description:
+ */
+
 #include "cmdreader.h"
 
 static void free_char(char *key, char *encryptor, char *dest, char *cnt, char *src, char *p, char *cipherchar)

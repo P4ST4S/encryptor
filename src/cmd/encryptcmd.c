@@ -1,3 +1,11 @@
+/**
+ * @ Author: Antoine ROSPARS
+ * @ Create Time: 2022-02-19 08:28:54
+ * @ Modified by: Antoine ROSPARS
+ * @ Modified time: 2022-02-19 16:56:14
+ * @ Description:
+ */
+
 #include "encryptcmd.h"
 #include <stdio.h>
 
@@ -30,6 +38,16 @@ void encrypt_cmd(char *data, size_t len, char *key, bool cipher, char *encryptor
         else if (std_strcmp(encryptor, "SWITCH") == 0)
         {
             std_switch(data, len, key, cipher);
+            return;
+        }
+        else if (std_strcmp(encryptor, "BYTBIT") == 0)
+        {
+            std_bytbit(data, len);
+            return;
+        }
+        else if (std_strcmp(encryptor, "BITSHAKE") == 0)
+        {
+            std_bitshake(data, len, key, cipher);
             return;
         }
         else

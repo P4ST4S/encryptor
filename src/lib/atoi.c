@@ -1,3 +1,11 @@
+/**
+ * @ Author: Antoine ROSPARS
+ * @ Create Time: 2022-02-19 08:28:54
+ * @ Modified by: Antoine ROSPARS
+ * @ Modified time: 2022-02-19 16:54:43
+ * @ Description:
+ */
+
 #include "atoi.h"
 
 int std_atoi(const char *nptr)

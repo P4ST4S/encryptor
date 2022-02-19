@@ -1,4 +1,3 @@
-
 # Encryptor
 
 Encryptor is software made for encrypt and decrypt string character. It's an Ecole 89's projet's
