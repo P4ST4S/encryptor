@@ -47,3 +47,5 @@ allow to encrypt or decrypt!
 -k “key”
 allows you to choose a keyword to encrypt, if the
 flag is not there you have to request it in the terminal
+
+# Copyright © Antoine ROSPARS - All Rights Reserved.
